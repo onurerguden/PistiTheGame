@@ -54,4 +54,19 @@ public class Deck {
     public int getCardNumber(){
         return cardNumber;
     }
+
+    public void Shuffle(){
+        System.out.println(Stars);
+        System.out.println("Shuffling the cards...");
+        System.out.println(Stars);
+        for(int c=0; c< cards.length;c++){
+            int index=(int)(Math.random()*cards.length);
+            Card Temp;
+            Temp=cards[c];
+            cards[c]=cards[index];
+            cards[index]=Temp;
+        }
+        cardNumber=52;
+
+    }
 }
