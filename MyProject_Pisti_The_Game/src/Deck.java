@@ -69,4 +69,34 @@ public class Deck {
         cardNumber=52;
 
     }
+
+    public void Cut(){
+
+
+
+        Card[]bottomHalf = new Card[26];
+        Card[]topHalf = new Card[26];
+
+        System.out.println(Stars);
+        System.out.println("Cutting the Deck");
+        System.out.println(Stars);
+
+        for(int i = 0; i<26;i++){
+            bottomHalf[i]= (cards[i+26]);
+        }
+        for(int i = 0; i <26;i++){
+            topHalf[i]=(cards[i]);
+        }
+        for(int i = 0;i<26;i++){
+            newCards[i]=bottomHalf[i];
+        }
+        for(int i = 0;i<26;i++){
+            newCards[i+26]=topHalf[i];
+
+        }
+        for(int i = 0;i<52;i++){
+            cards[i]=newCards[i];
+        }
+
+    }
 }
