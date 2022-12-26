@@ -97,6 +97,9 @@ public class Deck {
         for(int i = 0;i<52;i++){
             cards[i]=newCards[i];
         }
+        for(int k=0;k<cards.length;k++) {
+            cards[k].setNo(k);
+        }
 
     }
 }
