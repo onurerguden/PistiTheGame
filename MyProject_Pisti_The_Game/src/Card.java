@@ -34,8 +34,8 @@ public class Card {
         return Name;
     }
 
-    public String Anc(){
-        return "   "+Type+" "+Name +"\n Value: "+ Value+ "\n  No: "+(No+1) +"\n --------";
+    public String toString(){
+        return "\n   "+Type+" "+Name +"\n Value: "+ Value+ "\n  No: "+(No+1) +"\n --------";
     }
 
 

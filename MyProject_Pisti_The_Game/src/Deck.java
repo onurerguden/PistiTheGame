@@ -1,10 +1,12 @@
+import java.io.*;
 import java.util.Random;
 import java.util.Scanner;
+
 
 public class Deck {
     Random r = new Random();
     Scanner sc = new Scanner(System.in);
-    String Stars="*******************************";
+    String Stars="**************************";
 
 
 
@@ -102,4 +104,7 @@ public class Deck {
         }
 
     }
-}
+
+
+    }
+
