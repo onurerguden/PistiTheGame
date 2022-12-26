@@ -40,5 +40,18 @@ public class Deck {
         System.out.println("The Game has been started");
         System.out.println(Stars);
 
+
+    }
+    public Card getCard(int No) {
+        cardNumber--;
+        return cards[No];
+    }
+
+    public Card openCard(int No){
+        return cards[No];
+
+    }
+    public int getCardNumber(){
+        return cardNumber;
     }
 }
