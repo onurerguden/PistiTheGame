@@ -17,28 +17,42 @@ public class Main {
     public static boolean check2;
     public static boolean checkGame = false;
     public static int cardSelected;
-    public static int cardSelectedPlayer2;
 
     public static Deck deck1 = new Deck();
     public static void main(String[] args) throws IOException {
         String Stars="**************************";
         deck1.Shuffle();
         deck1.Cut();
-        for (int i = 0; i < deck1.getCardNumber(); i++) {
-            System.out.println(deck1.openCard(i).toString());
+        //for (int i = 0; i < deck1.getCardNumber(); i++) {
+          //  System.out.println(deck1.openCard(i).toString());
 
-        }
+        //}
         System.out.println(Stars);
 
        dealDeck();
        gameStart();
     }
     public static void endGame() throws IOException {
+        String Stars="**************************";
+
+        System.out.println(Stars);
         System.out.println("Your Score: "+scorePlayer1);
-        System.out.println("Oppenents Score: "+scorePlayer2);
+        System.out.println("AI's Score: "+scorePlayer2);
+        System.out.println(Stars);
+
+        if(scorePlayer1>scorePlayer2){
+            System.out.println("Congratulations you win the game");
+            System.out.println(Stars);
+
+        } else if (scorePlayer2>scorePlayer1) {
+            System.out.println("You lose the game.Good luck text time :)");
+            System.out.println(Stars);
+
+        }
 
 
-        File file = new File("Top Score List");
+
+        File file = new File("Top_Score_List.txt");
 
         if (!file.exists()){
             file.createNewFile();
@@ -46,15 +60,15 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
+
+
         System.out.println("What it your nickname?");
         String newPlayer= sc.nextLine();
+        System.out.println(Stars);
 
 
         FileWriter fWriter = new FileWriter(file,true);
         BufferedWriter bWriter = new BufferedWriter(fWriter);
-
-        bWriter.write("\n"+newPlayer + " = "+scorePlayer1);
-        bWriter.close();
 
         FileReader fReader= new FileReader(file);
         String line;
@@ -62,20 +76,43 @@ public class Main {
         BufferedReader bReader = new BufferedReader(fReader);
 
         while ((line=bReader.readLine())!= null){
-            //System.out.println(line);
+           // System.out.println("taradiğim sey ="+line);
 
             if(newPlayer.equals(line)){
                 System.out.println("SELECT A NEW NİCK...");
-            };
+                String TryNick =sc.nextLine();
+                bWriter.write("\n"+TryNick + " = "+scorePlayer1);
+
+                break;
+
+            }
+
+
+            else bWriter.write("\n"+newPlayer + " = "+scorePlayer1);
+            break;
 
         }
+
+        if ((line=bReader.readLine())== null){
+            bWriter.write("SCORE LİST");
+            bWriter.write("\n"+newPlayer + " = "+scorePlayer1);
+        }
+
+
+        System.out.println("Thanks for playing the game!..");
+
+
+        bWriter.close();
+
+
+
         fReader.close();
 
 
 
     }
     public static void gameStart() throws IOException {
-
+        String Stars="**************************";
         while(true){
 
 
@@ -85,8 +122,8 @@ public class Main {
                 for(int i=player1.getCardIndex()-4;i<player1.getCardIndex();i++){
                     System.out.println(i+1+"." +player1.openCard(i));
                 }
-                System.out.println("-----------------");
-                System.out.println("Opennent Deck: ");
+                System.out.println(Stars);
+                /*System.out.println("Opennent Deck: ");
                 for(int i=player2.getCardIndex()-4;i<player2.getCardIndex();i++){
                     System.out.println(i+1+"."+player2.openCard(i));
                 }
@@ -94,9 +131,12 @@ public class Main {
                 System.out.println("Floor Deck: ");
                 for(int i=0;i<floor.getCardIndex();i++){
                     System.out.println(i+1+"."+floor.openCard(i));
-                }
-                System.out.println("------------------");
+                }*/
+                System.out.println(Stars);
                 System.out.println("Last card on floor: "+floor.openCard(floor.getCardIndex()-1));
+                System.out.println(Stars);
+                System.out.println("Number of the cards that are on the floor: "+ floor.getHandCardNum());
+                System.out.println(Stars);
                 System.out.print("Please draw a card: ");
                 cardSelected = sc.nextInt()-1;
 
@@ -118,6 +158,7 @@ public class Main {
         }
     }
     public static void checkPlayer(int a){
+        String Stars="**************************";
         check1 =false;
         floor.insertCard(deck1.getCard(player1.openCard(cardSelected).getNo()));
 
@@ -154,7 +195,7 @@ public class Main {
 
 
 
-        System.out.println(deck1.openCard(player1.openCard(cardSelected).getNo()).getNo());
+
 
         player1.eraseCard(cardSelected);
 
@@ -163,6 +204,7 @@ public class Main {
 
     }
     public static void checkPlayer2(){
+        String Stars="**************************";
         check = false;
 
 
@@ -225,7 +267,7 @@ public class Main {
 
 
                 if(player2.openCard(i)!=null){
-                    System.out.println(deck1.openCard(player2.openCard(i).getNo()).getNo());
+
                     floor.insertCard(deck1.getCard(player2.openCard(i).getNo()));
                     player2.eraseCard(i);
                     break;
@@ -264,21 +306,22 @@ public class Main {
 
 
     public static void dealDeck(){
-        System.out.println("-----------------");
+        String Stars="**************************";
+        System.out.println(Stars);
         for(int i=0;i<4;i++){
 
             player1.insertCard(deck1.getCard(k));
-            System.out.println(player1.openCard(player1.getCardIndex()-1));
+
             k++;
 
 
             player2.insertCard(deck1.getCard(k));
-            System.out.println(player2.openCard(player1.getCardIndex()-1));
+
             k++;
 
 
             floor.insertCard(deck1.getCard(k));
-            System.out.println(floor.openCard(player1.getCardIndex()-1));
+
             k++;
 
 
@@ -286,19 +329,20 @@ public class Main {
         System.out.println("-----------------");
     }
     public static void dealDeckSecond(){
-        System.out.println("-------------------");
+        String Stars="**************************";
+        System.out.println(Stars);
         for(int i=0;i<4;i++){
             player1.insertCard(deck1.getCard(k));
-            System.out.println(player1.openCard(player1.getCardIndex()-1));
+
             k++;
 
             player2.insertCard(deck1.getCard(k));
-            System.out.println(player2.openCard(player2.getCardIndex()-1));
+
             k++;
 
         }
 
-        System.out.println("-----------------");
+        System.out.println(Stars);
 
     }
 
