@@ -1,6 +1,0 @@
-SCORE LİST
-Onur = 21
-İlker = 0
-Mahmut = 33
-Ronaldo = 4
-dENEME = 10
